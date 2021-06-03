@@ -1,0 +1,142 @@
+﻿@model IEnumerable<QuanLiNhaHang.Models.Sanpham>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- services -->
+<div class="services" id="services">
+    <div class="container">
+        <div class="agile-heading">
+            <h3 class="w3l-title">Our Services</h3>
+        </div>
+        <div class="wthree-services-grids">
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                        <h4>BEST COOKS</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                        <h4>FREE PARKING</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-spoon" aria-hidden="true"></i>
+                        <h4>FRESH FOOD</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        <h4>Excellent</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="wthree-services-grids services-grids1">
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        <h4>Best Price</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                        <h4>BIRTHDAY PARTY</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                        <h4>Easy Payment</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 wthree-services">
+                <div class="wthree-services-grid">
+                    <div class="wthree-services-info">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                        <h4>Hotel Popular</h4>
+                        <div class="w3ls-border"> </div>
+                    </div>
+                    <div class="wthree-services-captn">
+                        <h4>Glorious</h4>
+                        <p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //services -->
+
+<!-- menu-section -->
+<div class="menu-w3l" id="menu">
+    <h3 class="w3l-title">All Product</h3>
+    <ul id="flexiselDemo1">
+        @foreach (var sanpham in Model)
+        {
+    <li>
+        <div class="w3layouts_banner_bottom_left">
+            <img src="@Url.Content("~/a/images/s1.jpg")" alt=" " class="img-responsive" />
+            <h4>@sanpham.Tên_món_ăn --- <span>@sanpham.Giá_tiền.ToString("N0") vnđ</span></h4>
+
+        </div>
+    </li>}
+
+    </ul>
+</div>
+<!-- //menu-section -->
