@@ -242,6 +242,62 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="a\css\bootstrap.css" />
+    <Content Include="a\css\flexslider.css" />
+    <Content Include="a\css\font-awesome.css" />
+    <Content Include="a\css\jquery-ui.css" />
+    <Content Include="a\css\smoothbox.css" />
+    <Content Include="a\css\style.css" />
+    <Content Include="a\css\team.css" />
+    <Content Include="a\css\wickedpicker.css" />
+    <Content Include="a\fonts\fontawesome-webfont.svg" />
+    <Content Include="a\fonts\fontello.svg" />
+    <Content Include="a\images\1.jpg" />
+    <Content Include="a\images\2.jpg" />
+    <Content Include="a\images\3.jpg" />
+    <Content Include="a\images\4.jpg" />
+    <Content Include="a\images\5.jpg" />
+    <Content Include="a\images\6.jpg" />
+    <Content Include="a\images\bg.jpg" />
+    <Content Include="a\images\bg2.jpg" />
+    <Content Include="a\images\c-arrows.png" />
+    <Content Include="a\images\g1.jpg" />
+    <Content Include="a\images\g2.jpg" />
+    <Content Include="a\images\g3.jpg" />
+    <Content Include="a\images\g4.jpg" />
+    <Content Include="a\images\g5.jpg" />
+    <Content Include="a\images\g6.jpg" />
+    <Content Include="a\images\g7.jpg" />
+    <Content Include="a\images\g8.jpg" />
+    <Content Include="a\images\g9.jpg" />
+    <Content Include="a\images\pri.png" />
+    <Content Include="a\images\s1.jpg" />
+    <Content Include="a\images\s2.jpg" />
+    <Content Include="a\images\s3.jpg" />
+    <Content Include="a\images\s4.jpg" />
+    <Content Include="a\images\s5.jpg" />
+    <Content Include="a\images\t1.jpg" />
+    <Content Include="a\images\t2.jpg" />
+    <Content Include="a\images\t3.jpg" />
+    <Content Include="a\images\t4.jpg" />
+    <Content Include="a\images\test1.jpg" />
+    <Content Include="a\images\test2.jpg" />
+    <Content Include="a\images\test3.jpg" />
+    <Content Include="a\images\up.png" />
+    <Content Include="a\js\bootstrap.js" />
+    <Content Include="a\js\easing.js" />
+    <Content Include="a\js\jquery-2.1.4.min.js" />
+    <Content Include="a\js\jquery-ui.js" />
+    <Content Include="a\js\jquery.flexisel.js" />
+    <Content Include="a\js\jquery.flexslider.js" />
+    <Content Include="a\js\jquery.vide.min.js" />
+    <Content Include="a\js\move-top.js" />
+    <Content Include="a\js\responsiveslides.min.js" />
+    <Content Include="a\js\smoothbox.jquery2.js" />
+    <Content Include="a\js\wickedpicker.js" />
+    <Content Include="a\video\food.JPG" />
+    <Content Include="a\video\food.mp4" />
+    <Content Include="a\video\food.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -269,6 +325,13 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="a\fonts\fontawesome-webfont.eot" />
+    <Content Include="a\fonts\fontawesome-webfont.ttf" />
+    <Content Include="a\fonts\fontawesome-webfont.woff" />
+    <Content Include="a\fonts\fontawesome-webfont.woff2" />
+    <Content Include="a\fonts\FontAwesome.otf" />
+    <Content Include="a\fonts\fontello.eot" />
+    <Content Include="a\fonts\fontello.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -280,6 +343,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Views\Shared\Restaurant.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
