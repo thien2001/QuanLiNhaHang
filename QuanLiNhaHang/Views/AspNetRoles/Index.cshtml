@@ -1,0 +1,42 @@
+﻿@model IEnumerable<QuanLiNhaHang.Models.AspNetRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Phân quyền</h2>
+<p>
+    <a href="@Url.Action("Create")">Tạo mới</a>
+</p>
+<table class="table">
+    <tr>
+        <th>Quyền</th>
+        <th>Người dùng</th>
+        <th></th>
+    </tr>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>
+                @role.Name
+            </td>
+            <td></td>
+            <td>
+                <a href="@Url.Action("Edit",new { Id = role.Id })">Chỉnh sửa</a> |
+                <a href="@Url.Action("Delete",new { Id = role.Id })">Xóa</a> |
+                <a href="@Url.Action("Create","AspNetRoleUser",new { RoleId = role.Id })">Thêm người dùng</a>
+            </td>
+        </tr>
+        foreach (var user in role.AspNetUsers)
+        {
+            <tr>
+                <td></td>
+                <td>@user.UserName</td>
+                <td>
+                    <a href="@Url.Action("Delete", "AspNetRoleUser",new { RoleId = role.Id, UserId = user.Id })">Xóa</a>
+                </td>
+            </tr>
+
+        }
+    }
+</table>
