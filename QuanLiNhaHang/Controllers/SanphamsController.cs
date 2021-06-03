@@ -11,11 +11,11 @@ using QuanLiNhaHang.Models;
 
 namespace QuanLiNhaHang.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class SanphamsController : Controller
     {
         private CT25Team111Entities db = new CT25Team111Entities();
-
+        [Authorize(Roles = "Admin")]
         // GET: Sanphams
         public ActionResult Index()
         {
@@ -30,20 +30,28 @@ namespace QuanLiNhaHang.Controllers
             var sanphams = db.Sanphams.Include(s => s.Loaisanpham);
             return View(sanphams.ToList());
         }
+        // hàm search
 
-        // GET: Sanphams/Details/5
-        public ActionResult Details(string id)
+        [AllowAnonymous]
+        public ActionResult Search(String keyword)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Sanpham sanpham = db.Sanphams.Find(id);
-            if (sanpham == null)
+            var model = db.Sanphams.ToList();
+            model = model.Where(p => p.Tên_món_ăn.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword;
+            return View("Index2", model);
+
+        }
+        // GET: Sanphams/Details/5
+        [AllowAnonymous]
+        public ActionResult Details(string id)
+
+        {
+          var model = db.Sanphams.Find(id);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sanpham);
+            return View(model);
         }
 
         [AllowAnonymous]

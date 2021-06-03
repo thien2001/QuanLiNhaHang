@@ -357,6 +357,7 @@
     <Content Include="Views\AspNetRoles\Index.cshtml" />
     <Content Include="Views\AspNetRoleUser\Create.cshtml" />
     <Content Include="Views\Sanphams\Edit.cshtml" />
+    <Content Include="Views\Sanphams\Indexhome.cshtml" />
     <None Include="Views\Shared\Restaurant.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
