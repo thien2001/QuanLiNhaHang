@@ -131,7 +131,9 @@
         {
     <li>
         <div class="w3layouts_banner_bottom_left">
-            <img src="@Url.Content("~/a/images/s1.jpg")" alt=" " class="img-responsive" />
+            <a href="@Url.Action("Details", new {id=sanpham.Mã_SP })">
+                <img src="@Url.Action("Picture" , "Sanphams", new { sanpham.Mã_SP })" width="300px" height="220px" alt=" demo picture " />
+            </a>
             <h4>@sanpham.Tên_món_ăn --- <span>@sanpham.Giá_tiền.ToString("N0") vnđ</span></h4>
 
         </div>

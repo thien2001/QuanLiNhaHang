@@ -4,15 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h4>Tạo mới sản phẩm</h4>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Sanphams", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Sanpham</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -50,7 +50,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Giá_tiền, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Giá_tiền, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="input-group ">
+                    @Html.EditorFor(model => model.Giá_tiền, new { htmlAttributes = new { @class = "form-control" } })
+                    <span class="input-group-addon">vnđ</span>
+                </div>
                 @Html.ValidationMessageFor(model => model.Giá_tiền, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,9 +61,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Mô_tả, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Mô_tả, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Mô_tả, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Mô_tả, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="IMG">Hình ảnh</label>
+            <div class="col-md-10">
+                <input class="control-label" type="file" name="Picture" id="IMG" onchange="readPicture(this)" accept="image/gif, image/jpeg, image/png" />
+            </div>
+            <img id="Picture" />
         </div>
 
         <div class="form-group">
@@ -77,4 +88,27 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea#Mô_tả',
+            menubar: false
+        });
+
+        function readPicture(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('img#Picture')
+                        .attr('src', e.target.result)
+
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
 }
