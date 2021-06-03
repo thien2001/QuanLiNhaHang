@@ -347,7 +347,7 @@
     <Content Include="Views\Sanphams\Create.cshtml" />
     <Content Include="Views\Sanphams\Delete.cshtml" />
     <Content Include="Views\Sanphams\Details.cshtml" />
-    <Content Include="Views\Sanphams\Edit.cshtml" />
+    <Content Include="Views\Sanphams\Edit2.cshtml" />
     <Content Include="Views\Sanphams\Index.cshtml" />
     <Content Include="Views\Sanphams\Index2.cshtml" />
     <Content Include="Views\AspNetRoles\Create.cshtml" />
@@ -356,6 +356,7 @@
     <Content Include="Views\AspNetRoles\Edit.cshtml" />
     <Content Include="Views\AspNetRoles\Index.cshtml" />
     <Content Include="Views\AspNetRoleUser\Create.cshtml" />
+    <Content Include="Views\Sanphams\Edit.cshtml" />
     <None Include="Views\Shared\Restaurant.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

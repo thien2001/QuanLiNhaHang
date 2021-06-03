@@ -1,4 +1,4 @@
-﻿@model QuanLiNhaHang.Models.Sanpham
+﻿    @model QuanLiNhaHang.Models.Sanpham
 
 @{
     ViewBag.Title = "Delete";
@@ -12,48 +12,45 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Tên_món_ăn)
+            Tên món ăn
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Tên_món_ăn)
+            @Model.Tên_món_ăn
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Số_lượng)
+            Số lượng
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Số_lượng)
+            @Model.Số_lượng
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Giá_tiền)
+            Giá tiền
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Giá_tiền)
+            @Model.Giá_tiền.ToString("N0") vnđ
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Mô_tả)
+            Mô tả
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Mô_tả)
+            @MvcHtmlString.Create(Model.Mô_tả)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Loaisanpham.Tên_loại_SP)
+            Tên loại SP
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Loaisanpham.Tên_loại_SP)
+            @Model.Loaisanpham.Tên_loại_SP
         </dd>
-
+        <dt>
+            Hình ảnh
+        </dt>
+        <dd>
+            <img src="@Url.Action("Picture", new {Model.Mã_SP })" />
+        </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
