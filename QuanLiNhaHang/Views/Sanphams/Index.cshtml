@@ -1,57 +1,86 @@
 ﻿@model IEnumerable<QuanLiNhaHang.Models.Sanpham>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách món ăn";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="@Url.Action("Create")">Tạo mới món ăn</a>
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Tên_món_ăn)
+            @*@Html.DisplayNameFor(model => model.Tên_món_ăn)*@
+            Tên món ăn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Số_lượng)
+            @*@Html.DisplayNameFor(model => model.Số_lượng)*@
+            Số lượng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Giá_tiền)
+            @*@Html.DisplayNameFor(model => model.Giá_tiền)*@
+            Giá tiền
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Mô_tả)
+            @*@Html.DisplayNameFor(model => model.Mô_tả)*@
+            Mô tả
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Loaisanpham.Tên_loại_SP)
+            @*@Html.DisplayNameFor(model => model.Loaisanpham.Tên_loại_SP)*@
+            Tên loại SP
+        </th>
+        <th>
+            Hình ảnh
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tên_món_ăn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Số_lượng)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Giá_tiền)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mô_tả)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Loaisanpham.Tên_loại_SP)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Mã_SP }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Mã_SP }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Mã_SP })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Tên_món_ăn)*@
+                <a href="@Url.Action("Details", new {id=item.Mã_SP })" target="_blank">@item.Tên_món_ăn </a>
+                @*@item.Tên_món_ăn*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Số_lượng)*@
+                @item.Số_lượng
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Giá_tiền)*@
+                @item.Giá_tiền
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Mô_tả)*@
+                @item.Mô_tả
+            </td>
+            <td>
+                @if (item.Loaisanpham.Tên_loại_SP != null && item.Loaisanpham.Tên_loại_SP.Length > 100)
+                {
+                    @item.Loaisanpham.Tên_loại_SP.Substring(0, 100)
+                }
+                else
+                {
+                    @item.Loaisanpham.Tên_loại_SP
+                }
+            </td>
+            <td>
+                <img src="@Url.Action("Picture", new { item.Mã_SP})" width="30px" height="22px" />
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.Mã_SP })">
+                    <i class="fa fa-edit"></i>
+                </a> |
+                <a href="@Url.Action("Delete", new { id = item.Mã_SP })">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+
+        </tr>
+    }
 
 </table>

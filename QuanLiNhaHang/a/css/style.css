@@ -653,7 +653,7 @@ div#myModal3 {
     color: #fff;
 }
 table {
-    background-color: #000 !important;
+    /*background-color: #000 !important;*/
 }
 input#timepicker {
     display: inline-block;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Transactions;
 using QuanLiNhaHang.Models;
 
 namespace QuanLiNhaHang.Controllers
@@ -45,6 +46,12 @@ namespace QuanLiNhaHang.Controllers
             return View(sanpham);
         }
 
+        [AllowAnonymous]
+        public ActionResult Picture(string Mã_SP)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + Mã_SP, "images");
+        }
         // GET: Sanphams/Create
         public ActionResult Create()
         {
@@ -55,19 +62,42 @@ namespace QuanLiNhaHang.Controllers
         // POST: Sanphams/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Mã_SP,Mã_loại_SP,Tên_món_ăn,Số_lượng,Giá_tiền,Mô_tả")] Sanpham sanpham)
+        public ActionResult Create(Sanpham model, HttpPostedFileBase picture)
         {
+            ValidateProduct(model);
             if (ModelState.IsValid)
             {
-                db.Sanphams.Add(sanpham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (picture != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        db.Sanphams.Add(model);
+                        db.SaveChanges();
+
+                        // store picture
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + model.Mã_SP);
+
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                else ModelState.AddModelError("", "hình ảnh không được tìm thấy!");
             }
 
-            ViewBag.Mã_loại_SP = new SelectList(db.Loaisanphams, "Mã_loại_SP", "Tên_loại_SP", sanpham.Mã_loại_SP);
-            return View(sanpham);
+            ViewBag.Mã_loại_SP = new SelectList(db.Loaisanphams, "Mã_loại_SP", "Tên_loại_SP", model.Mã_loại_SP);
+            return View(model);
+        }
+        private const string PICTURE_PATH = "~/Upload/Sanphams/";
+        public void ValidateProduct(Sanpham sanpham)
+        {
+            if (sanpham.Giá_tiền < 0)
+                ModelState.AddModelError("Giá_tiền", "Giá tiền phải lớn hơn 0");
+            if (sanpham.Số_lượng < 0)
+                ModelState.AddModelError("Số_lượng", "Số lượng phải lớn hơn 0");
         }
 
         // GET: Sanphams/Edit/5
