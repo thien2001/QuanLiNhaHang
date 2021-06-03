@@ -103,49 +103,59 @@ namespace QuanLiNhaHang.Controllers
         // GET: Sanphams/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            var model = db.Sanphams.Find(id);
+            if (model == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();  
             }
             Sanpham sanpham = db.Sanphams.Find(id);
             if (sanpham == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Mã_loại_SP = new SelectList(db.Loaisanphams, "Mã_loại_SP", "Tên_loại_SP", sanpham.Mã_loại_SP);
-            return View(sanpham);
+            ViewBag.Mã_loại_SP = new SelectList(db.Loaisanphams, "Mã_loại_SP", "Tên_loại_SP", model.Mã_loại_SP);
+            return View(model);
         }
 
         // POST: Sanphams/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Mã_SP,Mã_loại_SP,Tên_món_ăn,Số_lượng,Giá_tiền,Mô_tả")] Sanpham sanpham)
+        public ActionResult Edit(Sanpham model, HttpPostedFileBase picture)
         {
+            ValidateProduct(model);
             if (ModelState.IsValid)
             {
-                db.Entry(sanpham).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if (picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + model.Mã_SP);
+                    }
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
-            ViewBag.Mã_loại_SP = new SelectList(db.Loaisanphams, "Mã_loại_SP", "Tên_loại_SP", sanpham.Mã_loại_SP);
-            return View(sanpham);
+            ViewBag.Mã_loại_SP = new SelectList(db.Loaisanphams, "Mã_loại_SP", "Tên_loại_SP", model.Mã_loại_SP);
+            return View(model);
         }
 
         // GET: Sanphams/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Sanpham sanpham = db.Sanphams.Find(id);
-            if (sanpham == null)
+
+            var model = db.Sanphams.Find(id);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sanpham);
+            return View(model);
         }
 
         // POST: Sanphams/Delete/5
@@ -153,10 +163,19 @@ namespace QuanLiNhaHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Sanpham sanpham = db.Sanphams.Find(id);
-            db.Sanphams.Remove(sanpham);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            using (var scope = new TransactionScope())
+            {
+                var model = db.Sanphams.Find(id);
+                db.Sanphams.Remove(model);
+                db.SaveChanges();
+
+                var path = Server.MapPath(PICTURE_PATH);
+                System.IO.File.Delete(path + model.Mã_SP);
+
+                scope.Complete();
+                return RedirectToAction("Index");
+            }
+
         }
 
         protected override void Dispose(bool disposing)
