@@ -16,8 +16,7 @@ namespace QuanLiNhaHang.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        //dcv
-
+        //acb
         public ManageController()
         {
         }
