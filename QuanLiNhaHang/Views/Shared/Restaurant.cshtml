@@ -32,6 +32,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //online-fonts -->
 </head>
 <body>
+ 
+    
     <!-- banner -->
     <div data-vide-bg="@Url.Content("~/a/video/food")">
         <div class="center-container">
@@ -41,31 +43,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-md-6 col-sm-4 col-xs-4 logo">
                             <h1><a href="@Url.Action("Index2", "Sanphams")">Glorious<span>Restaurant</span></a></h1>
                         </div>
-                        
+
                         <div class="col-md-6 col-sm-8 col-xs-8 w3_menu">
 
-                            <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
-                                <a class="page-scroll" href="@Url.Action("Index2", "Sanphams")">List Product</a>
-                            </div>
+                            
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 <a class="page-scroll" href="@Url.Action("About", "Home")">About</a>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 <a class="page-scroll" href="@Url.Action("Contact", "Home")">Contact</a>
                             </div>
-
-                            <div class="d-none d-xl-block">
-                                <div class="form-box f-right ">
-                                    <form action="@Url.Action("Search","Sanphams")" method="get">
-                                        <input type="text" name="Keyword" placeholder="Bạn Muốn Ăn gì ?" value="@ViewBag.Keyword">
-                                        <div class="search-icon">
-                                            <button type="submit" class="fas fa-search special-tag"></button>
-                                        </div>
-                                    </form>
-                                </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
+                                <a class="page-scroll" href="@Url.Action("Index2", "Sanphams")">List Product</a>
                             </div>
-
-                            
 
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 @if (Request.IsAuthenticated)
@@ -83,36 +73,70 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
 
+                            <div class="d-none d-xl-block">
+                                <div class="form-box f-right ">
+                                    <form action="@Url.Action("Search","Sanphams")" method="get">
+                                        <input type="text" name="Keyword" placeholder="Bạn Muốn Ăn gì ?" value="@ViewBag.Keyword">
+                                        <div class="search-icon">
+                                            <button type="submit" class="fas fa-search special-tag"></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <
+
+
+
+
+                            <form action="#" method="post" class="last">
+                                <input type="hidden" name="cmd" value="_cart">
+                                <input type="hidden" name="display" value="1">
+                                <button class="top_transmitv_cart" type="submit" name="submit" value="">
+                                    My Cart
+                                    <span class="fa fa-shopping-cart"></span>
+                                    <a href="@Url.Action("Index", "ShoppingCart")"><i class="fas fa-shopping-cart"></i> 2</a>
+
+                                </button>
+                            </form>
+
+
+
+
+
+
+
                         </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <!--Slider-->
-                        <div class="col-md-7 callbacks_container">
-                            <ul class="rslides" id="slider3">
-                                <li>
-                                    <div class="slider-info">
-                                        <h3>Fresh Food Restaurant</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="slider-info">
-                                        <h3>Welcome To Restaurant</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="slider-info">
-                                        <h3>Perfect Match For Your Restaurant</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- //Slider -->
-                        <!-- form -->
-                        <!-- //form -->
+                        <div class="clearfix"> </div>
                     </div>
+                    <!--Slider-->
+                    <div class="col-md-7 callbacks_container">
+                        <ul class="rslides" id="slider3">
+                            <li>
+                                <div class="slider-info">
+                                    <h3>Fresh Food Restaurant</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="slider-info">
+                                    <h3>Welcome To Restaurant</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="slider-info">
+                                    <h3>Perfect Match For Your Restaurant</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //Slider -->
+                    <!-- form -->
+                    <!-- //form -->
+                </div>
             </div>
 
         </div>

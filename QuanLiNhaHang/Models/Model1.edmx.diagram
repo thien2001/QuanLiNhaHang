@@ -9,8 +9,8 @@
         <EntityTypeShape EntityType="CT25Team111Model.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team111Model.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team111Model.AspNetUser" Width="1.5" PointX="10" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team111Model.Chitietdonhang" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team111Model.Chitietgiohang" Width="1.5" PointX="5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team111Model.Chitietdonhang" Width="1.5" PointX="6.125" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team111Model.Chitietgiohang" Width="1.5" PointX="5.5" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team111Model.Chitiethanhtoan" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team111Model.Donhang" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team111Model.Giohang" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
