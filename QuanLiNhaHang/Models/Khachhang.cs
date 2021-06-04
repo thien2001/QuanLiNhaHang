@@ -32,3 +32,16 @@ namespace QuanLiNhaHang.Models
         public virtual ICollection<Giohang> Giohangs { get; set; }
     }
 }
+public static bool capNhatKhachHang(int maKhachHang, int tienNo, int soXuTichLuy)
+{
+    MySqlConnection connection = DBConnect.getConnection();
+    connection.Open();
+    String sql = "Update KhachHang set TienNo=?TienNo, SoXuTichLuy=?SoXuTichLuy where MaKhachHang=?MaKhachHang";
+    MySqlCommand cmd = new MySqlCommand(sql, connection);
+    cmd.Parameters.AddWithValue("?TienNo", tienNo);
+    cmd.Parameters.AddWithValue("?SoXuTichLuy", soXuTichLuy);
+    cmd.Parameters.AddWithValue("?MaKhachHang", maKhachHang);
+    cmd.ExecuteNonQuery();
+    connection.Close();
+    return true;
+}
