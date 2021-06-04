@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+@using QuanLiNhaHang.Models
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,12 +41,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="banner_top">
                         <div class="col-md-6 col-sm-4 col-xs-4 logo">
                             <h1><a href="@Url.Action("Index2", "Sanphams")">Glorious<span>Restaurant</span></a></h1>
-                        </div>
-                        
-                        <div class="col-md-6 col-sm-8 col-xs-8 w3_menu">
 
+                        </div>
+                        <div class="d-none d-xl-block">
+                            <div class="form-box f-right ">
+                                <form action="@Url.Action("Search","Sanphams")" method="get">
+                                    <input type="text" name="Keyword" placeholder="Search products" value="@ViewBag.Keyword">
+                                    <div class="search-icon">
+                                        <button type="submit" class="fas fa-search special-tag"></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-8 col-xs-8 w3_menu">
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
-                                <a class="page-scroll" href="@Url.Action("Index2", "Sanphams")">List Product</a>
+                                <a class="page-scroll" href="@Url.Action("Index2", "Sanphams")">Home</a>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 <a class="page-scroll" href="@Url.Action("About", "Home")">About</a>
@@ -53,20 +63,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 <a class="page-scroll" href="@Url.Action("Contact", "Home")">Contact</a>
                             </div>
-
-                            <div class="d-none d-xl-block">
-                                <div class="form-box f-right ">
-                                    <form action="@Url.Action("Search","Sanphams")" method="get">
-                                        <input type="text" name="Keyword" placeholder="Bạn Muốn Ăn gì ?" value="@ViewBag.Keyword">
-                                        <div class="search-icon">
-                                            <button type="submit" class="fas fa-search special-tag"></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                            
-
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 @if (Request.IsAuthenticated)
                                 {
@@ -80,44 +76,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 {
                                     <a href="@Url.Action("Login", "Account")">Log in</a>}
                             </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
+                                <a class="page-scroll" href="@Url.Action("Index", "ShoppingCart")">Cart</a>
+                                @((Session["ShoppingCart"] as List <Chitietdonhang>)?.Count)
+                            </div>
 
 
 
                         </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <!--Slider-->
-                        <div class="col-md-7 callbacks_container">
-                            <ul class="rslides" id="slider3">
-                                <li>
-                                    <div class="slider-info">
-                                        <h3>Fresh Food Restaurant</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="slider-info">
-                                        <h3>Welcome To Restaurant</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="slider-info">
-                                        <h3>Perfect Match For Your Restaurant</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- //Slider -->
-                        <!-- form -->
-                        <!-- //form -->
+                        <div class="clearfix"> </div>
                     </div>
+                    <!--Slider-->
+                    <div class="col-md-7 callbacks_container">
+                        <ul class="rslides" id="slider3">
+                            <li>
+                                <div class="slider-info">
+                                    <h3>Fresh Food Restaurant</h3>
+                                    <content> Trường ngu như heo </content>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="slider-info">
+                                    <h3>Welcome To Restaurant</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="slider-info">
+                                    <h3>Perfect Match For Your Restaurant</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //Slider -->
+                    <!-- form -->
+                    <!-- //form -->
+                </div>
             </div>
 
         </div>
     </div>
     <!-- //banner -->
+
     <section class="latest-product-area padding-bottom">
         <div class="container">
             @RenderBody()
@@ -129,7 +131,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="agile-footer-grids">
                 <div class="col-md-3 col-sm-6 col-xs-6 w3-agile-footer-grid">
                     <div class="logo-2">
-                        <h2><a href="index.html">Glorious<span>Restaurant</span></a></h2>
+                        <h2><a href="@Url.Action("Index2", "Sanphams")">Glorious<span>Restaurant</span></a></h2>
                     </div>
                     <ul>
                         <li>Lorem ipsum dolor sit,</li>
@@ -167,26 +169,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <div class="col-md-6 w3-agile-footer-grid grid-w3-1">
-                    <div class="contact-block-left">
-                        <form action="#" method="post">
-                            <input type="text" placeholder="Name" name="Name" required="">
-                            <input type="email" class="email" placeholder="Email" name="Email" required="">
-                            <textarea placeholder="Message" name="message" required=""></textarea>
-                            <input type="submit" value="Send">
-                        </form>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
+
                 <div class="clearfix"> </div>
             </div>
         </div>
         <!-- copyright -->
-        <div class="copyright">
-            <p>© 2017 Glorious . All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a> </p>
-        </div>
         <!-- //copyright -->
     </div>
+
     <!-- //footer -->
     <!-- js-scripts -->
     <!-- js -->
@@ -273,7 +263,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </script>
     <script type="text/javascript" src="@Url.Content("~/a/js/jquery.flexisel.js")"></script>
     <!-- //flexSlider-for-menu-section -->
-    <!-- start-smoth-scrolling -->
+    <!-- start-smoth-scrolling -->'
     <script type="text/javascript" src="@Url.Content("~/a/js/move-top.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/a/js/easing.js")"></script>
     <script type="text/javascript">
@@ -321,8 +311,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript">
         $('.timepicker').wickedpicker({ twentyFour: false });
     </script>
-    @RenderSection("scripts", required: false)
     <!-- //Time -->
     <!-- //js-scripts -->
+    @RenderSection("scripts", required: false)
 </body>
 </html>

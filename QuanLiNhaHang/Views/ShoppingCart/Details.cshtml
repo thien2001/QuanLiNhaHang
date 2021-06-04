@@ -1,0 +1,42 @@
+﻿@model QuanLiNhaHang.Models.Chitietdonhang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Chitietdonhang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Số_lượng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Số_lượng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Donhang.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Donhang.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sanpham.Mã_loại_SP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sanpham.Mã_loại_SP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Mã_CTĐH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
