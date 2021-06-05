@@ -29,7 +29,10 @@ namespace QuanLiNhaHang.Controllers
             }
         }
         // GET: ShoppingCart
+
         [Authorize]
+
+        [Authorize ]
         public ActionResult Index()
         {
             var hashtable = new Hashtable();
