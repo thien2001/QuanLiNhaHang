@@ -29,6 +29,9 @@ namespace QuanLiNhaHang.Controllers
             }
         }
         // GET: ShoppingCart
+
+        [Authorize]
+
         [Authorize ]
         public ActionResult Index()
         {
@@ -109,3 +112,4 @@ namespace QuanLiNhaHang.Controllers
         }
     }
 }
+

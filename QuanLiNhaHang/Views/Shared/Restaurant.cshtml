@@ -16,7 +16,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="application/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!--// Meta tag Keywords -->
+
     <!--// Meta tag Keywords --> 
+
     <link href="@Url.Content("~/a/css/bootstrap.css")" rel="stylesheet" type="text/css" media="all" /> <!-- Bootstrap-Core-CSS -->
     <link href="@Url.Content("~/a/css/style.css")" rel="stylesheet" type="text/css" media="all" /> <!-- Style-CSS -->
     <link rel="stylesheet" href="@Url.Content("~/a/css/font-awesome.css")"> <!-- Font-Awesome-Icons-CSS -->
@@ -32,8 +36,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //online-fonts -->
 </head>
 <body>
- 
-    
+
+
     <!-- banner -->
     <div data-vide-bg="@Url.Content("~/a/video/food")">
         <div class="center-container">
@@ -46,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                         <div class="col-md-6 col-sm-8 col-xs-8 w3_menu">
 
-                            
+
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 <a class="page-scroll" href="@Url.Action("About", "Home")">About</a>
                             </div>
@@ -96,8 +100,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <button class="top_transmitv_cart" type="submit" name="submit" value="">
                                     My Cart
                                     <span class="fa fa-shopping-cart"></span>
+
+                                    @((Session["ShoppingCart"] as List<Chitietdonhang>)?.Count)
                                     
                                     @((Session["ShoppingCart"] as  List<Chitietdonhang>)?.Count)
+ 
                                     </a>
 
                                 </button>
