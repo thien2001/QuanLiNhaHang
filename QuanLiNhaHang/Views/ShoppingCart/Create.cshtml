@@ -1,4 +1,4 @@
-﻿@model QuanLiNhaHang.Models.Chitietgiohang
+﻿@model QuanLiNhaHang.Models.Chitietdonhang
 
 @{
     ViewBag.Title = "Create";
@@ -12,22 +12,22 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Chitietgiohang</h4>
+        <h4>Chitietdonhang</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Mã_CTGH, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Mã_CTĐH, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Mã_CTGH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mã_CTGH, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Mã_CTĐH, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Mã_CTĐH, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Mã_GH, "Mã_GH", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Mã_ĐH, "Mã_ĐH", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Mã_GH", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Mã_GH, "", new { @class = "text-danger" })
+                @Html.DropDownList("Mã_ĐH", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Mã_ĐH, "", new { @class = "text-danger" })
             </div>
         </div>
 
