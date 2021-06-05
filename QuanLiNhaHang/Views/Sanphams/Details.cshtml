@@ -42,18 +42,17 @@
                 @Model.Mô_tả
             </p>
 
-            <form class="d-flex justify-content-left">
-                <!-- Default input -->
-                <input type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 70px">
-                <button class="btn btn-primary btn-md my-0 p waves-effect waves-light" type="submit" style="background-color: #ff7315; border: none; margin-left: 10px">
+            <form action="@Url.Action("Create", "ShoppingCart")" method="post">
+                <input type="hidden" name="Mã_SP" value="@Model.Mã_SP" />
+                <div class="d-flex justify-content-left">
+                    <!-- Default input -->
+                    <input name="Số_lượng" type="number" value="1" min="1" aria-label="Search" class="form-control" style="width: 70px">
+                    <input type="submit" class="btn btn-primary btn-md my-0 p waves-effect waves-light" value="Add to cart" />
 
 
-                    Add to cart
-                    <i class="fa fa-shopping-cart ml-1"></i>
-                </button>
+                </div>
 
             </form>
-
         </div>
         <!--Content-->
 
@@ -61,4 +60,6 @@
     <!--Grid column-->
 
 </div>
+
+
 

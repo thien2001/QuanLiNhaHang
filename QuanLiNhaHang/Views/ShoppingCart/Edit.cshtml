@@ -1,4 +1,4 @@
-﻿@model QuanLiNhaHang.Models.Chitietgiohang
+﻿@model QuanLiNhaHang.Models.Chitietdonhang
 
 @{
     ViewBag.Title = "Edit";
@@ -10,18 +10,18 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Chitietgiohang</h4>
+        <h4>Chitietdonhang</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Mã_CTGH)
+        @Html.HiddenFor(model => model.Mã_CTĐH)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Mã_GH, "Mã_GH", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Mã_ĐH, "Mã_ĐH", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Mã_GH", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Mã_GH, "", new { @class = "text-danger" })
+                @Html.DropDownList("Mã_ĐH", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Mã_ĐH, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -56,3 +56,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

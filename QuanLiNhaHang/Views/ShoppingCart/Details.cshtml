@@ -1,4 +1,4 @@
-﻿@model QuanLiNhaHang.Models.Chitietgiohang
+﻿@model QuanLiNhaHang.Models.Chitietdonhang
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Chitietgiohang</h4>
+    <h4>Chitietdonhang</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,11 +19,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Giohang.Email)
+            @Html.DisplayNameFor(model => model.Donhang.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Giohang.Email)
+            @Html.DisplayFor(model => model.Donhang.Email)
         </dd>
 
         <dt>
@@ -37,6 +37,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Mã_CTGH }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Mã_CTĐH }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
