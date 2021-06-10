@@ -1,0 +1,54 @@
+@using QuanLiNhaHang.Models
+@using QuanLiNhaHang.Dao
+<html>
+<head>
+	<title>HoaDon</title>
+	<script src="js/jquery.min.js"></script>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?ver=1.4.2'></script>
+</head>
+<body>
+	@{
+	List<KhuVuc>
+		danhSachKhuVuc = KhuVucDAO.getListKhuVuc();
+		KhachHang kh = (KhachHang)Session["user"];
+		}
+		<form action="~/HoaDon/hoadon" method="POST">
+			@if (ViewBag.error != null)
+			{
+			<span>@ViewBag.error</span>
+			}
+			<div>
+				<label>Ho ten nguoi nhan</label>
+				<input type="text" name="user2" />
+			</div>
+			<div>
+				<label>So dien thoai</label>
+				<input type="text" name="soDT" />
+			</div>
+			<div>
+				<label>Khu vuc</label>
+				<select name="khuvuc">
+					@for (int i = 0; i < danhSachKhuVuc.Count; i++)
+					{
+					if (danhSachKhuVuc[i].getTenKhuVuc().Equals("TPHCM"))
+					{
+					<option selected value="@danhSachKhuVuc[i].getTenKhuVuc()">@danhSachKhuVuc[i].getTenKhuVuc()</option>
+					}
+					else
+					{
+					<option value="@danhSachKhuVuc[i].getTenKhuVuc()">@danhSachKhuVuc[i].getTenKhuVuc()</option>
+					}
+					}
+				</select>
+			</div>
+
+			<div>
+				<label>Dia Chi</label>
+				<input type="text" name="diaChi" />
+			</div>
+			<div>
+				<input type="submit" value="Thanh toan" />
+			</div>
+		</form>
+</body>
+</html>
