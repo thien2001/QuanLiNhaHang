@@ -53,7 +53,7 @@
                                             <b>@((item.Sanpham.Giá_tiền * @item.Số_lượng).ToString("N0")) vnđ</b>
                                         </td>
                                         <td class="remove">
-                                            <a class="remove-item" href="/cart/change?line=1&amp;quantity=0" data-id="1073641097"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            <a class="remove-item" href="@Url.Action("Delete" ,"ShoppingCart")"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
 
@@ -90,7 +90,4 @@
     </div>
 </section>
 
-        </div>
-    </div>
-</section>
 

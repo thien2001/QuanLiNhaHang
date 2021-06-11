@@ -17,24 +17,25 @@ namespace QuanLiNhaHang.Controllers
 
         private List<Chitietdonhang> ShoppingCart = null;
 
-        public ShoppingCartController()
+        private void GetShoppingCart()
         {
-            var session = System.Web.HttpContext.Current.Session;
-            if (session["ShoppingCart"] != null)
-                ShoppingCart = session["ShoppingCart"] as List<Chitietdonhang>;
+
+            if (Session["ShoppingCart"] != null)
+                ShoppingCart = Session["ShoppingCart"] as List<Chitietdonhang>;
             else
             {
                 ShoppingCart = new List<Chitietdonhang>();
-                session["ShoppingCart"] = ShoppingCart;
+                Session["ShoppingCart"] = ShoppingCart;
             }
         }
         // GET: ShoppingCart
 
-        [Authorize]
+      
 
         [Authorize ]
         public ActionResult Index()
         {
+            GetShoppingCart();
             var hashtable = new Hashtable();
             foreach (var Chitietdonhang in ShoppingCart)
             {
@@ -56,6 +57,7 @@ namespace QuanLiNhaHang.Controllers
         [HttpPost]
         public ActionResult Create(string Mã_SP, int số_lượng)
         {
+            GetShoppingCart();
             var sanpham = db.Sanphams.Find(Mã_SP);
             ShoppingCart.Add(new Chitietdonhang
             {
@@ -87,18 +89,13 @@ namespace QuanLiNhaHang.Controllers
         }
 
         // GET: ShoppingCart/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Chitietdonhang chitietdonhang = db.Chitietdonhangs.Find(id);
-            if (chitietdonhang == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chitietdonhang);
+
+            GetShoppingCart();
+            ShoppingCart.Clear();
+            Session["ShoppingCart"] = ShoppingCart; 
+            return RedirectToAction("Index");
         }
 
 
