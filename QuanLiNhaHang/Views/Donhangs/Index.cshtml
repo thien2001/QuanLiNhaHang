@@ -1,0 +1,67 @@
+﻿@model IEnumerable<QuanLiNhaHang.Models.Donhang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Địa_chỉ_người_nhận)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SĐT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Ngày_giao)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Trangthaidonhang.Trạng_thái)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Địa_chỉ_người_nhận)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SĐT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Ngày_giao)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Trangthaidonhang.Trạng_thái)
+    </td>
+    <td>
+        @foreach (var details in item.Chitietdonhangs)
+                {
+                    @details.Sanpham.Tên_món_ăn <span>x</span> @details.Số_lượng <br />
+                }
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Mã_ĐH }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Mã_ĐH }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Mã_ĐH })
+    </td>
+</tr>
+}
+
+</table>

@@ -6,8 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
 namespace QuanLiNhaHang.Models
 {
     using System;
@@ -21,35 +20,12 @@ namespace QuanLiNhaHang.Models
             this.Chitietdonhangs = new HashSet<Chitietdonhang>();
             this.Chitietgiohangs = new HashSet<Chitietgiohang>();
         }
-
-        [Required]
-        [Display(Name = "Mã SP")]
-        
+    
         public string Mã_SP { get; set; }
-
-        [Required]
-        [Display(Name = "Mã loại SP")]
-        
         public string Mã_loại_SP { get; set; }
-
-        [Required]
-        [Display(Name = "Tên món ăn")]
-        
         public string Tên_món_ăn { get; set; }
-
-        [Required]
-        [Display(Name = "Số lượng")]
-        
         public int Số_lượng { get; set; }
-
-        [Required]
-        [Display(Name = "Giá tiền")]
-        
         public int Giá_tiền { get; set; }
-
-        [Required]
-        [Display(Name = "Mô tả")]
-        
         public string Mô_tả { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

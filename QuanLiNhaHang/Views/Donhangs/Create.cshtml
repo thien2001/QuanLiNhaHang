@@ -1,0 +1,126 @@
+﻿@using QuanLiNhaHang.Models
+@model QuanLiNhaHang.Models.Donhang
+
+@{
+    ViewBag.Title = "Create";
+    var Cart = ViewBag.Cart as List<Chitietdonhang>;
+}
+
+<h2>Create</h2>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>eCommerce HTML-5 Template </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/owl.carousel.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/flaticon.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/slicknav.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/animate.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/magnific-popup.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/fontawesome-all.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/themify-icons.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/slick.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/nice-select.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/style.css")">
+</head>
+<section class="latest-product-area padding-bottom">
+    <div class="container">
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Billing Details</h3>
+
+                    
+
+                    @using (Html.BeginForm("Create", "Donhangs", FormMethod.Post, new { @class = "row contact_form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                          <div class="col-md-6 form-group p_star">
+                           @Html.DropDownList("Mã_TT", null, htmlAttributes: new { @class = "form-control", required = true, style = "padding-left:70px" } )
+                              @Html.ValidationMessageFor(model => model.Mã_TT, "", new { @class = "text-danger" })
+                          <span class="placeholder" data-placeholder="Trạng thái "></span>
+                         </div>
+
+                        <div class="col-md-6 form-group p_star">
+                            @Html.EditorFor(model => model.SĐT, new { htmlAttributes = new { @class = "form-control", required = true, style = "padding-left:50px" } })
+                            @Html.ValidationMessageFor(model => model.SĐT, "", new { @class = "text-danger" })
+                            <span class="placeholder" data-placeholder="SĐT"></span>
+                            <div class="col-md-10">
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            @Html.EditorFor(model => model.Địa_chỉ_người_nhận, new { htmlAttributes = new { @class = "form-control", required = true, style = "padding-left:70px" } })
+                            @Html.ValidationMessageFor(model => model.Địa_chỉ_người_nhận, "", new { @class = "text-danger" })
+                            <span class="placeholder" data-placeholder="Address"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", required = true, style = "padding-left:100px" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            <span class="placeholder" data-placeholder="Email Address"></span>
+                        </div>
+
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option4" name="selector" required>
+                            <label for="f-option4">I’ve read and accept the </label>
+                            <a href="#">terms &amp; conditions*</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Place Order" class="btn btn-default" style="color: white" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-lg-4">
+                    <div class="order_box">
+                        <h2>Your Order</h2>
+                        <ul class="list">
+                            <li>
+                                <a href="#">
+                                    Product
+                                    <span>Total</span>
+                                </a>
+                            </li>
+                            @foreach (var item in Cart)
+                            {
+                                <li>
+                                    <a href="@Url.Action("Details","Sanphams", new {item.Sanpham.Mã_SP })">
+                                        @item.Sanpham.Tên_món_ăn
+                                        <span class="middle">x @item.Số_lượng</span>
+                                        <span class="last">@(item.Sanpham.Giá_tiền * item.Số_lượng)đ</span>
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                        <ul class="list list_2">
+                            <li>
+                                <a href="#">
+                                    Total
+                                    <span>@(Cart.Sum(c => c.Sanpham.Giá_tiền * c.Số_lượng).ToString("N0"))đ</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

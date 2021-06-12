@@ -27,6 +27,5 @@ namespace QuanLiNhaHang.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chitietgiohang> Chitietgiohangs { get; set; }
-        public virtual Khachhang Khachhang { get; set; }
     }
 }

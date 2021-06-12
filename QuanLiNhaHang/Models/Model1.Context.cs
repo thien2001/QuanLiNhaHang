@@ -35,7 +35,6 @@ namespace QuanLiNhaHang.Models
         public virtual DbSet<Donhang> Donhangs { get; set; }
         public virtual DbSet<Giohang> Giohangs { get; set; }
         public virtual DbSet<Hinhthucthanhtoan> Hinhthucthanhtoans { get; set; }
-        public virtual DbSet<Khachhang> Khachhangs { get; set; }
         public virtual DbSet<Loaisanpham> Loaisanphams { get; set; }
         public virtual DbSet<Sanpham> Sanphams { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

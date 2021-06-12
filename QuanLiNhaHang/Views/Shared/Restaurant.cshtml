@@ -63,21 +63,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 <a class="page-scroll" href="@Url.Action("Index", "Sanphams")">Product Management</a>
                             </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
+                                <a class="page-scroll" href="@Url.Action("Index", "Donhangs")">Bill Management</a>
+                            </div>
 
                             <div class="col-md-2 col-sm-2 col-xs-2 top-nav-text">
                                 @if (Request.IsAuthenticated)
                                 {
                                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                     {
-                                @Html.AntiForgeryToken()
-                                <div>
-                                    @Html.ActionLink("My Account ", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                                </div>
-                                <a class="btn header-btn" href="javascript:document.getElementById('logoutForm').submit()">Log out</a> }
+                                        @Html.AntiForgeryToken()
+                                        <div>
+                                            @Html.ActionLink("My Account ", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        </div>
+                                        <a class="btn header-btn" href="javascript:document.getElementById('logoutForm').submit()">Log out</a> }
                                 }
                                 else
                                 {
-                                <a href="@Url.Action("Login", "Account")">Log in</a>}
+                                    <a href="@Url.Action("Login", "Account")">Log in</a>}
                             </div>
 
 
@@ -94,7 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
 
 
-                            
+
 
 
 

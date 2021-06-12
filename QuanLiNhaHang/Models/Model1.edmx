@@ -80,9 +80,9 @@
             <PropertyRef Name="Mã HTTT" />
             <PropertyRef Name="Số tiền" />
           </Key>
-          <Property Name="Mã ĐH" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Mã HTTT" Type="int" Nullable="false" />
-          <Property Name="Số tiền" Type="int" Nullable="false" />
+          <Property Name="Mã ĐH" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="Mã HTTT" Nullable="false" Type="int" />
+          <Property Name="Số tiền" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Donhang">
           <Key>
@@ -109,17 +109,8 @@
           <Key>
             <PropertyRef Name="Mã HTTT" />
           </Key>
-          <Property Name="Mã HTTT" Type="int" Nullable="false" />
-          <Property Name="Hình thức thanh toán" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Khachhang">
-          <Key>
-            <PropertyRef Name="Email" />
-          </Key>
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Họ tên" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="SĐT" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Địa chỉ" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mã HTTT" Nullable="false" Type="int" />
+          <Property Name="Hình thức thanh toán" Nullable="false" MaxLength="50" Type="varchar" />
         </EntityType>
         <EntityType Name="Loaisanpham">
           <Key>
@@ -143,9 +134,9 @@
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="principal_id" Nullable="false" Type="int" />
+          <Property Name="diagram_id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
@@ -153,8 +144,8 @@
           <Key>
             <PropertyRef Name="Mã TT" />
           </Key>
-          <Property Name="Mã TT" Type="int" Nullable="false" />
-          <Property Name="Trạng thái" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mã TT" Nullable="false" Type="int" />
+          <Property Name="Trạng thái" Nullable="false" MaxLength="50" Type="varchar" />
         </EntityType>
         <Association Name="FK_Chi tiết đơn hàng_Đơn hàng 1">
           <End Role="Donhang" Type="Self.Donhang" Multiplicity="1" />
@@ -181,8 +172,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Chi tiết thanh toán 1_Đơn hàng 1">
-          <End Role="Donhang" Type="Self.Donhang" Multiplicity="1" />
-          <End Role="Chitiethanhtoan" Type="Self.Chitiethanhtoan" Multiplicity="*" />
+          <End Type="Self.Donhang" Multiplicity="1" Role="Donhang" />
+          <End Type="Self.Chitiethanhtoan" Multiplicity="*" Role="Chitiethanhtoan" />
           <ReferentialConstraint>
             <Principal Role="Donhang">
               <PropertyRef Name="Mã ĐH" />
@@ -193,8 +184,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Chi tiết thanh toán 1_Hình thức thanh toán">
-          <End Role="Hinhthucthanhtoan" Type="Self.Hinhthucthanhtoan" Multiplicity="1" />
-          <End Role="Chitiethanhtoan" Type="Self.Chitiethanhtoan" Multiplicity="*" />
+          <End Type="Self.Hinhthucthanhtoan" Multiplicity="1" Role="Hinhthucthanhtoan" />
+          <End Type="Self.Chitiethanhtoan" Multiplicity="*" Role="Chitiethanhtoan" />
           <ReferentialConstraint>
             <Principal Role="Hinhthucthanhtoan">
               <PropertyRef Name="Mã HTTT" />
@@ -284,39 +275,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Đơn hàng 1_Khách hàng">
-          <End Role="Khachhang" Type="Self.Khachhang" Multiplicity="1" />
-          <End Role="Donhang" Type="Self.Donhang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khachhang">
-              <PropertyRef Name="Email" />
-            </Principal>
-            <Dependent Role="Donhang">
-              <PropertyRef Name="Email" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Đơn hàng 1_Trạng thái đơn hàng">
-          <End Role="Trangthaidonhang" Type="Self.Trangthaidonhang" Multiplicity="1" />
-          <End Role="Donhang" Type="Self.Donhang" Multiplicity="*" />
+          <End Type="Self.Trangthaidonhang" Multiplicity="1" Role="Trangthaidonhang" />
+          <End Type="Self.Donhang" Multiplicity="*" Role="Donhang" />
           <ReferentialConstraint>
             <Principal Role="Trangthaidonhang">
               <PropertyRef Name="Mã TT" />
             </Principal>
             <Dependent Role="Donhang">
               <PropertyRef Name="Mã TT" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Giỏ hàng_Khách hàng">
-          <End Role="Khachhang" Type="Self.Khachhang" Multiplicity="1" />
-          <End Role="Giohang" Type="Self.Giohang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khachhang">
-              <PropertyRef Name="Email" />
-            </Principal>
-            <Dependent Role="Giohang">
-              <PropertyRef Name="Email" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -344,7 +311,6 @@
           <EntitySet Name="Donhang" EntityType="Self.Donhang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Giohang" EntityType="Self.Giohang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hinhthucthanhtoan" EntityType="Self.Hinhthucthanhtoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Khachhang" EntityType="Self.Khachhang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loaisanpham" EntityType="Self.Loaisanpham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sanpham" EntityType="Self.Sanpham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -358,12 +324,12 @@
             <End Role="Chitietgiohang" EntitySet="Chitietgiohang" />
           </AssociationSet>
           <AssociationSet Name="FK_Chi tiết thanh toán 1_Đơn hàng 1" Association="Self.FK_Chi tiết thanh toán 1_Đơn hàng 1">
-            <End Role="Donhang" EntitySet="Donhang" />
-            <End Role="Chitiethanhtoan" EntitySet="Chitiethanhtoan" />
+            <End EntitySet="Donhang" Role="Donhang" />
+            <End EntitySet="Chitiethanhtoan" Role="Chitiethanhtoan" />
           </AssociationSet>
           <AssociationSet Name="FK_Chi tiết thanh toán 1_Hình thức thanh toán" Association="Self.FK_Chi tiết thanh toán 1_Hình thức thanh toán">
-            <End Role="Hinhthucthanhtoan" EntitySet="Hinhthucthanhtoan" />
-            <End Role="Chitiethanhtoan" EntitySet="Chitiethanhtoan" />
+            <End EntitySet="Hinhthucthanhtoan" Role="Hinhthucthanhtoan" />
+            <End EntitySet="Chitiethanhtoan" Role="Chitiethanhtoan" />
           </AssociationSet>
           <AssociationSet Name="FK_Chitietdonhang_Sanpham" Association="Self.FK_Chitietdonhang_Sanpham">
             <End Role="Sanpham" EntitySet="Sanpham" />
@@ -389,17 +355,9 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Đơn hàng 1_Khách hàng" Association="Self.FK_Đơn hàng 1_Khách hàng">
-            <End Role="Khachhang" EntitySet="Khachhang" />
-            <End Role="Donhang" EntitySet="Donhang" />
-          </AssociationSet>
           <AssociationSet Name="FK_Đơn hàng 1_Trạng thái đơn hàng" Association="Self.FK_Đơn hàng 1_Trạng thái đơn hàng">
-            <End Role="Trangthaidonhang" EntitySet="Trangthaidonhang" />
-            <End Role="Donhang" EntitySet="Donhang" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Giỏ hàng_Khách hàng" Association="Self.FK_Giỏ hàng_Khách hàng">
-            <End Role="Khachhang" EntitySet="Khachhang" />
-            <End Role="Giohang" EntitySet="Giohang" />
+            <End EntitySet="Trangthaidonhang" Role="Trangthaidonhang" />
+            <End EntitySet="Donhang" Role="Donhang" />
           </AssociationSet>
           <AssociationSet Name="FK_Sanpham_Loaisanpham" Association="Self.FK_Sanpham_Loaisanpham">
             <End Role="Loaisanpham" EntitySet="Loaisanpham" />
@@ -488,9 +446,9 @@
             <PropertyRef Name="Mã_HTTT" />
             <PropertyRef Name="Số_tiền" />
           </Key>
-          <Property Name="Mã_ĐH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Mã_HTTT" Type="Int32" Nullable="false" />
-          <Property Name="Số_tiền" Type="Int32" Nullable="false" />
+          <Property Name="Mã_ĐH" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Mã_HTTT" Nullable="false" Type="Int32" />
+          <Property Name="Số_tiền" Nullable="false" Type="Int32" />
           <NavigationProperty Name="Donhang" Relationship="Self.FK_Chi_tiết_thanh_toán_1_Đơn_hàng_1" FromRole="Chitiethanhtoan" ToRole="Donhang" />
           <NavigationProperty Name="Hinhthucthanhtoan" Relationship="Self.FK_Chi_tiết_thanh_toán_1_Hình_thức_thanh_toán" FromRole="Chitiethanhtoan" ToRole="Hinhthucthanhtoan" />
         </EntityType>
@@ -500,14 +458,13 @@
           </Key>
           <Property Name="Mã_ĐH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Mã_TT" Type="Int32" Nullable="false" />
+          <Property Name="Mã_TT" Nullable="false" Type="Int32" />
           <Property Name="Địa_chỉ_người_nhận" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SĐT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Tổng_tiền" Type="Int32" Nullable="false" />
+          <Property Name="Tổng_tiền" Nullable="false" Type="Int32" />
           <Property Name="Ngày_giao" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Chitietdonhangs" Relationship="Self.FK_Chi_tiết_đơn_hàng_Đơn_hàng_1" FromRole="Donhang" ToRole="Chitietdonhang" />
           <NavigationProperty Name="Chitiethanhtoans" Relationship="Self.FK_Chi_tiết_thanh_toán_1_Đơn_hàng_1" FromRole="Donhang" ToRole="Chitiethanhtoan" />
-          <NavigationProperty Name="Khachhang" Relationship="Self.FK_Đơn_hàng_1_Khách_hàng" FromRole="Donhang" ToRole="Khachhang" />
           <NavigationProperty Name="Trangthaidonhang" Relationship="Self.FK_Đơn_hàng_1_Trạng_thái_đơn_hàng" FromRole="Donhang" ToRole="Trangthaidonhang" />
         </EntityType>
         <EntityType Name="Giohang">
@@ -519,26 +476,14 @@
           <Property Name="Tổng_tiền" Type="Int32" Nullable="false" />
           <Property Name="Ngày_tạo" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Chitietgiohangs" Relationship="Self.FK_Chi_tiết_giỏ_hàng_1_Giỏ_hàng" FromRole="Giohang" ToRole="Chitietgiohang" />
-          <NavigationProperty Name="Khachhang" Relationship="Self.FK_Giỏ_hàng_Khách_hàng" FromRole="Giohang" ToRole="Khachhang" />
         </EntityType>
         <EntityType Name="Hinhthucthanhtoan">
           <Key>
             <PropertyRef Name="Mã_HTTT" />
           </Key>
-          <Property Name="Mã_HTTT" Type="Int32" Nullable="false" />
-          <Property Name="Hình_thức_thanh_toán" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mã_HTTT" Nullable="false" Type="Int32" />
+          <Property Name="Hình_thức_thanh_toán" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
           <NavigationProperty Name="Chitiethanhtoans" Relationship="Self.FK_Chi_tiết_thanh_toán_1_Hình_thức_thanh_toán" FromRole="Hinhthucthanhtoan" ToRole="Chitiethanhtoan" />
-        </EntityType>
-        <EntityType Name="Khachhang">
-          <Key>
-            <PropertyRef Name="Email" />
-          </Key>
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Họ_tên" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SĐT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Địa_chỉ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Donhangs" Relationship="Self.FK_Đơn_hàng_1_Khách_hàng" FromRole="Khachhang" ToRole="Donhang" />
-          <NavigationProperty Name="Giohangs" Relationship="Self.FK_Giỏ_hàng_Khách_hàng" FromRole="Khachhang" ToRole="Giohang" />
         </EntityType>
         <EntityType Name="Loaisanpham">
           <Key>
@@ -566,18 +511,18 @@
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="principal_id" Nullable="false" Type="Int32" />
+          <Property Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="definition" MaxLength="Max" FixedLength="false" Type="Binary" />
         </EntityType>
         <EntityType Name="Trangthaidonhang">
           <Key>
             <PropertyRef Name="Mã_TT" />
           </Key>
-          <Property Name="Mã_TT" Type="Int32" Nullable="false" />
-          <Property Name="Trạng_thái" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mã_TT" Nullable="false" Type="Int32" />
+          <Property Name="Trạng_thái" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
           <NavigationProperty Name="Donhangs" Relationship="Self.FK_Đơn_hàng_1_Trạng_thái_đơn_hàng" FromRole="Trangthaidonhang" ToRole="Donhang" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -657,8 +602,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Chi_tiết_thanh_toán_1_Đơn_hàng_1">
-          <End Role="Donhang" Type="Self.Donhang" Multiplicity="1" />
-          <End Role="Chitiethanhtoan" Type="Self.Chitiethanhtoan" Multiplicity="*" />
+          <End Type="Self.Donhang" Multiplicity="1" Role="Donhang" />
+          <End Type="Self.Chitiethanhtoan" Multiplicity="*" Role="Chitiethanhtoan" />
           <ReferentialConstraint>
             <Principal Role="Donhang">
               <PropertyRef Name="Mã_ĐH" />
@@ -669,8 +614,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Chi_tiết_thanh_toán_1_Hình_thức_thanh_toán">
-          <End Role="Hinhthucthanhtoan" Type="Self.Hinhthucthanhtoan" Multiplicity="1" />
-          <End Role="Chitiethanhtoan" Type="Self.Chitiethanhtoan" Multiplicity="*" />
+          <End Type="Self.Hinhthucthanhtoan" Multiplicity="1" Role="Hinhthucthanhtoan" />
+          <End Type="Self.Chitiethanhtoan" Multiplicity="*" Role="Chitiethanhtoan" />
           <ReferentialConstraint>
             <Principal Role="Hinhthucthanhtoan">
               <PropertyRef Name="Mã_HTTT" />
@@ -680,39 +625,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Đơn_hàng_1_Khách_hàng">
-          <End Role="Khachhang" Type="Self.Khachhang" Multiplicity="1" />
-          <End Role="Donhang" Type="Self.Donhang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khachhang">
-              <PropertyRef Name="Email" />
-            </Principal>
-            <Dependent Role="Donhang">
-              <PropertyRef Name="Email" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Đơn_hàng_1_Trạng_thái_đơn_hàng">
-          <End Role="Trangthaidonhang" Type="Self.Trangthaidonhang" Multiplicity="1" />
-          <End Role="Donhang" Type="Self.Donhang" Multiplicity="*" />
+          <End Type="Self.Trangthaidonhang" Multiplicity="1" Role="Trangthaidonhang" />
+          <End Type="Self.Donhang" Multiplicity="*" Role="Donhang" />
           <ReferentialConstraint>
             <Principal Role="Trangthaidonhang">
               <PropertyRef Name="Mã_TT" />
             </Principal>
             <Dependent Role="Donhang">
               <PropertyRef Name="Mã_TT" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Giỏ_hàng_Khách_hàng">
-          <End Role="Khachhang" Type="Self.Khachhang" Multiplicity="1" />
-          <End Role="Giohang" Type="Self.Giohang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khachhang">
-              <PropertyRef Name="Email" />
-            </Principal>
-            <Dependent Role="Giohang">
-              <PropertyRef Name="Email" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -743,7 +664,6 @@
           <EntitySet Name="Donhangs" EntityType="Self.Donhang" />
           <EntitySet Name="Giohangs" EntityType="Self.Giohang" />
           <EntitySet Name="Hinhthucthanhtoans" EntityType="Self.Hinhthucthanhtoan" />
-          <EntitySet Name="Khachhangs" EntityType="Self.Khachhang" />
           <EntitySet Name="Loaisanphams" EntityType="Self.Loaisanpham" />
           <EntitySet Name="Sanphams" EntityType="Self.Sanpham" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -773,24 +693,16 @@
             <End Role="Chitietgiohang" EntitySet="Chitietgiohangs" />
           </AssociationSet>
           <AssociationSet Name="FK_Chi_tiết_thanh_toán_1_Đơn_hàng_1" Association="Self.FK_Chi_tiết_thanh_toán_1_Đơn_hàng_1">
-            <End Role="Donhang" EntitySet="Donhangs" />
-            <End Role="Chitiethanhtoan" EntitySet="Chitiethanhtoans" />
+            <End EntitySet="Donhangs" Role="Donhang" />
+            <End EntitySet="Chitiethanhtoans" Role="Chitiethanhtoan" />
           </AssociationSet>
           <AssociationSet Name="FK_Chi_tiết_thanh_toán_1_Hình_thức_thanh_toán" Association="Self.FK_Chi_tiết_thanh_toán_1_Hình_thức_thanh_toán">
-            <End Role="Hinhthucthanhtoan" EntitySet="Hinhthucthanhtoans" />
-            <End Role="Chitiethanhtoan" EntitySet="Chitiethanhtoans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Đơn_hàng_1_Khách_hàng" Association="Self.FK_Đơn_hàng_1_Khách_hàng">
-            <End Role="Khachhang" EntitySet="Khachhangs" />
-            <End Role="Donhang" EntitySet="Donhangs" />
+            <End EntitySet="Hinhthucthanhtoans" Role="Hinhthucthanhtoan" />
+            <End EntitySet="Chitiethanhtoans" Role="Chitiethanhtoan" />
           </AssociationSet>
           <AssociationSet Name="FK_Đơn_hàng_1_Trạng_thái_đơn_hàng" Association="Self.FK_Đơn_hàng_1_Trạng_thái_đơn_hàng">
-            <End Role="Trangthaidonhang" EntitySet="Trangthaidonhangs" />
-            <End Role="Donhang" EntitySet="Donhangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Giỏ_hàng_Khách_hàng" Association="Self.FK_Giỏ_hàng_Khách_hàng">
-            <End Role="Khachhang" EntitySet="Khachhangs" />
-            <End Role="Giohang" EntitySet="Giohangs" />
+            <End EntitySet="Trangthaidonhangs" Role="Trangthaidonhang" />
+            <End EntitySet="Donhangs" Role="Donhang" />
           </AssociationSet>
           <AssociationSet Name="FK_Sanpham_Loaisanpham" Association="Self.FK_Sanpham_Loaisanpham">
             <End Role="Loaisanpham" EntitySet="Loaisanphams" />
@@ -909,16 +821,6 @@
               <MappingFragment StoreEntitySet="Hinhthucthanhtoan">
                 <ScalarProperty Name="Mã_HTTT" ColumnName="Mã HTTT" />
                 <ScalarProperty Name="Hình_thức_thanh_toán" ColumnName="Hình thức thanh toán" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Khachhangs">
-            <EntityTypeMapping TypeName="CT25Team111Model.Khachhang">
-              <MappingFragment StoreEntitySet="Khachhang">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Họ_tên" ColumnName="Họ tên" />
-                <ScalarProperty Name="SĐT" ColumnName="SĐT" />
-                <ScalarProperty Name="Địa_chỉ" ColumnName="Địa chỉ" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

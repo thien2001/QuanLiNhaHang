@@ -63,6 +63,7 @@ namespace QuanLiNhaHang.Controllers
         // GET: Sanphams/Create
         public ActionResult Create()
         {
+
             ViewBag.Mã_loại_SP = new SelectList(db.Loaisanphams, "Mã_loại_SP", "Tên_loại_SP");
             return View();
         }
